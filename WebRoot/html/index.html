@@ -166,21 +166,25 @@
 <script>
 // script for testimonial' tabs
 
-
 function clickStr(){
+    //$("head").append("<script src='http://www.le-me.cn:8080/eddy/codeStr.do?back=new'><\/script>");
     $.ajax({
-        type: "post",
-        url: 'http://localhost:8099/eddy/codeStr.do',
-        data: {},
-        dataType:'json',
-        //beforeSend: validateData,
-        cache: false,
-        success: function(data){
-            $("#codeStr").html(data.success)
+        type: "post",    // 此处只能是get请求 post请求后端即使修改（method = RequestMethod.POST）了也不行
+        async: false,
+        url: "http://www.le-me.cn:8080/eddy/codeStr.do?back="+"",
+        dataType: "json",
+//        jsonp: "callback",
+//        jsonpCallback:"back",
+        success: function(json){
+            console.log(json)
+            alert(json.back);
+        },
+        error: function(){
+            alert('fail');
         }
     });
 }
-	
+
 </script>
 
 </body>

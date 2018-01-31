@@ -3,6 +3,7 @@ package com.fh.controller.code;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,12 +24,14 @@ public class CodeController {
 	
 	@RequestMapping(value="/codeStr")
 	@ResponseBody
-	public Object str(){
+	public Object str(HttpServletRequest request,HttpServletResponse response){
 		try {
 			String str = codeService.getRandomStr((int)(Math.random()*101+1));
-			
+			String callback = request.getParameter("back");
 			PageData pageData = new PageData();
-			pageData.put("success", str);
+			response.setHeader("Access-Control-Allow-Origin", "*");
+			response.setHeader("Access-Control-Allow-Methods","GET,POST");
+			pageData.put("back", callback + "(" + str + ")");
 			return AppUtil.returnObject(new PageData(), pageData);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -37,7 +40,7 @@ public class CodeController {
 		
 	}
 	@RequestMapping(value="/codeStrs")
-	public void strs(HttpServletResponse response){
+	public void strs(HttpServletResponse response, HttpServletRequest request){
 		try {
 			String str = codeService.getRandomStr((int)(Math.random()*101+1));
 			StringBuffer sb  =  new StringBuffer();
@@ -45,8 +48,15 @@ public class CodeController {
 			sb.append(str);
 			sb.append("</h1>");
 			response.setCharacterEncoding("utf-8");
+			response.setHeader("Access-Control-Allow-Origin", "*");
+			response.setHeader("Access-Control-Allow-Methods","GET,POST");
 			response.setContentType("text/html;charset=utf-8");
-			response.getWriter().write(sb.toString());
+			String result = sb.toString();
+			//前端传过来的回调函数名称
+			String callback = request.getParameter("back");
+			//用回调函数名称包裹返回数据，这样，返回数据就作为回调函数的参数传回去了
+			result = callback + "(" + result + ")";
+			response.getWriter().write(result);
 			response.getWriter().close();
 		} catch (Exception e) {
 			e.printStackTrace();

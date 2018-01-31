@@ -31,7 +31,7 @@ public class ExcelController extends BaseController{
 	@RequestMapping(value="/data")
 	@ResponseBody
 	public Object str(){
-		return AppUtil.returnObject(new PageData(),data());
+		return AppUtil.returnObject(new PageData(),getEntity());
 	}
 	
 	
