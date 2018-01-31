@@ -37,8 +37,8 @@ public class ExcelController extends BaseController{
 	
 	public PageData data(){
 		PageData pageData = new PageData();
-		PageData[] heard = new PageData[10];
-		for (int i = 0; i < 10; i++) {
+		PageData[] heard = new PageData[20];
+		for (int i = 0; i < 20; i++) {
 			PageData pd = new PageData();
 			if(i==0){
 				pd.put("ms", "卖进状态");
@@ -47,6 +47,44 @@ public class ExcelController extends BaseController{
 				pd.put("kd", "开档计划");
 				pd.put("age", "督导编号");
 				pd.put("name", "督导姓名");
+				pd.put("ms1", "卖进状态");
+				pd.put("zx1", "执行状态");
+				pd.put("pass1", "系统编号");
+				pd.put("kd1", "开档计划");
+				pd.put("age1", "督导编号");
+				pd.put("name1", "督导姓名");
+				pd.put("ms11", "卖进状态");
+				pd.put("zx11", "执行状态");
+				pd.put("pass11", "系统编号");
+				pd.put("kd11", "开档计划");
+				pd.put("age11", "督导编号");
+				pd.put("name11", "督导姓名");
+				pd.put("ms2", "卖进状态");
+				pd.put("zx2", "执行状态");
+				pd.put("pass2", "系统编号");
+				pd.put("kd2", "开档计划");
+				pd.put("age2", "督导编号");
+				pd.put("name2", "督导姓名");
+				pd.put("ms22", "卖进状态");
+				pd.put("zx22", "执行状态");
+				pd.put("pass22", "系统编号");
+				pd.put("kd22", "开档计划");
+				pd.put("age22", "督导编号");
+				pd.put("name22", "督导姓名");
+				pd.put("ms3", "卖进状态");
+				pd.put("zx3", "执行状态");
+				pd.put("pass3", "系统编号");
+				pd.put("kd3", "开档计划");
+				pd.put("age3", "督导编号");
+				pd.put("name3", "督导姓名");
+				pd.put("ms33", "卖进状态");
+				pd.put("zx33", "执行状态");
+				pd.put("pass33", "系统编号");
+				pd.put("kd33", "开档计划");
+				pd.put("age33", "督导编号");
+				pd.put("name33", "督导姓名");
+				pd.put("del", "del");
+
 			}else
 			if (i%2!=0) {
 				pd.put("ms", "卖进成功");
@@ -55,6 +93,42 @@ public class ExcelController extends BaseController{
 				pd.put("kd", "开档成功");
 				pd.put("age", "9999"+i);
 				pd.put("name", "张三");
+				pd.put("ms1", "卖进成功");
+				pd.put("zx1", "执行成功");
+				pd.put("pass1", "0000"+i);
+				pd.put("kd1", "开档成功");
+				pd.put("age1", "9999"+i);
+				pd.put("name1", "张三");
+				pd.put("ms11", "卖进成功");
+				pd.put("zx11", "执行成功");
+				pd.put("pass11", "0000"+i);
+				pd.put("kd11", "开档成功");
+				pd.put("age11", "9999"+i);
+				pd.put("name11", "张三");
+				pd.put("ms2", "卖进成功");
+				pd.put("zx2", "执行成功");
+				pd.put("pass2", "0000"+i);
+				pd.put("kd2", "开档成功");
+				pd.put("age2", "9999"+i);
+				pd.put("name2", "张三");
+				pd.put("ms22", "卖进成功");
+				pd.put("zx22", "执行成功");
+				pd.put("pass22", "0000"+i);
+				pd.put("kd22", "开档成功");
+				pd.put("age22", "9999"+i);
+				pd.put("name22", "张三");
+				pd.put("ms3", "卖进成功");
+				pd.put("zx3", "执行成功");
+				pd.put("pass3", "0000"+i);
+				pd.put("kd3", "开档成功");
+				pd.put("age3", "9999"+i);
+				pd.put("name3", "张三");
+				pd.put("ms33", "卖进成功");
+				pd.put("zx33", "执行成功");
+				pd.put("pass33", "0000"+i);
+				pd.put("kd33", "开档成功");
+				pd.put("age33", "9999"+i);
+				pd.put("name33", "张三");
 			}else{
 				pd.put("ms", "卖进中");
 				pd.put("zx", "执行失败");
@@ -62,6 +136,42 @@ public class ExcelController extends BaseController{
 				pd.put("kd", "开档成功");
 				pd.put("age", "9999"+i);
 				pd.put("name", "王五");
+				pd.put("ms1", "卖进中");
+				pd.put("zx1", "执行失败");
+				pd.put("pass1", "0000"+i);
+				pd.put("kd1", "开档成功");
+				pd.put("age1", "9999"+i);
+				pd.put("name1", "王五");
+				pd.put("ms11", "卖进中");
+				pd.put("zx11", "执行失败");
+				pd.put("pass11", "0000"+i);
+				pd.put("kd11", "开档成功");
+				pd.put("age11", "9999"+i);
+				pd.put("name11", "王五");
+				pd.put("ms2", "卖进中");
+				pd.put("zx2", "执行失败");
+				pd.put("pass2", "0000"+i);
+				pd.put("kd2", "开档成功");
+				pd.put("age2", "9999"+i);
+				pd.put("name2", "王五");
+				pd.put("ms22", "卖进中");
+				pd.put("zx22", "执行失败");
+				pd.put("pass22", "0000"+i);
+				pd.put("kd22", "开档成功");
+				pd.put("age22", "9999"+i);
+				pd.put("name22", "王五");
+				pd.put("ms3", "卖进中");
+				pd.put("zx3", "执行失败");
+				pd.put("pass3", "0000"+i);
+				pd.put("kd3", "开档成功");
+				pd.put("age3", "9999"+i);
+				pd.put("name3", "王五");
+				pd.put("ms33", "卖进中");
+				pd.put("zx33", "执行失败");
+				pd.put("pass33", "0000"+i);
+				pd.put("kd33", "开档成功");
+				pd.put("age33", "9999"+i);
+				pd.put("name33", "王五");
 			}
 			heard[i]=pd;
 		}
@@ -76,8 +186,8 @@ public class ExcelController extends BaseController{
 	public PageData getEntity(){
 		PageData pageData = new PageData();
 		ArrayList<TestData> arrayList = new ArrayList<TestData>();
-		TestData[] heard = new TestData[10];
-		for (int i = 0; i < 10; i++) {
+		TestData[] heard = new TestData[100];
+		for (int i = 0; i < 100; i++) {
 			TestData testData = new TestData();
 			if(i==0){
 				testData.setDunum("督导编号");

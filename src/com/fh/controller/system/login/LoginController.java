@@ -90,22 +90,22 @@ public class LoginController extends BaseController {
 		PageData pd = new PageData();
 		pd = this.getPageData();
 		String errInfo = "";
-		String KEYDATA[] = pd.getString("KEYDATA").replaceAll("qq313596790fh", "").replaceAll("QQ978336446fh", "").split(",fh,");
+		String KEYDATA[] = pd.getString("KEYDATA").replaceAll("q11683634eddy", "").replaceAll("q372206866eddy", "").split(",eddy,");
 		
 		if(null != KEYDATA && KEYDATA.length == 3){
 			//shiro管理的session
 			Subject currentUser = SecurityUtils.getSubject();  
 			Session session = currentUser.getSession();
-			String sessionCode = (String)session.getAttribute(Const.SESSION_SECURITY_CODE);		//获取session中的验证码
+//			String sessionCode = (String)session.getAttribute(Const.SESSION_SECURITY_CODE);		//获取session中的验证码
 			
-			String code = KEYDATA[2];
-			if(null == code || "".equals(code)){
-				errInfo = "nullcode"; //验证码为空
-			}else{
+//			String code = KEYDATA[2];
+//			if(null == code || "".equals(code)){
+//				errInfo = "nullcode"; //验证码为空
+//			}else{
 				String USERNAME = KEYDATA[0];
 				String PASSWORD  = KEYDATA[1];
 				pd.put("USERNAME", USERNAME);
-				if(Tools.notEmpty(sessionCode) && sessionCode.equalsIgnoreCase(code)){
+//				if(Tools.notEmpty(sessionCode) && sessionCode.equalsIgnoreCase(code)){
 					String passwd = new SimpleHash("SHA-1", USERNAME, PASSWORD).toString();	//密码加密
 					pd.put("PASSWORD", passwd);
 					pd = userService.getUserByNameAndPwd(pd);
@@ -137,13 +137,13 @@ public class LoginController extends BaseController {
 					}else{
 						errInfo = "usererror"; 				//用户名或密码有误
 					}
-				}else{
-					errInfo = "codeerror";				 	//验证码输入有误
-				}
+//				}else{
+//					errInfo = "codeerror";				 	//验证码输入有误
+//				}
 				if(Tools.isEmpty(errInfo)){
 					errInfo = "success";					//验证成功
 				}
-			}
+//			}
 		}else{
 			errInfo = "error";	//缺少参数
 		}

@@ -31,10 +31,25 @@ public class CodeController {
 			pageData.put("success", str);
 			return AppUtil.returnObject(new PageData(), pageData);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
 		
+	}
+	@RequestMapping(value="/codeStrs")
+	public void strs(HttpServletResponse response){
+		try {
+			String str = codeService.getRandomStr((int)(Math.random()*101+1));
+			StringBuffer sb  =  new StringBuffer();
+			sb.append("<h1>");
+			sb.append(str);
+			sb.append("</h1>");
+			response.setCharacterEncoding("utf-8");
+			response.setContentType("text/html;charset=utf-8");
+			response.getWriter().write(sb.toString());
+			response.getWriter().close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

@@ -22,7 +22,7 @@
 <div id="codeStr"></div>    
 <div id="example"></div>  
 <script> 
-
+var da
 	 $.ajax({
 		type: "post",
 		url: '<%=basePath%>excel/data.do',
@@ -31,22 +31,99 @@
 		//beforeSend: validateData,
 		cache: false,
 		success: function(data){
-			 $("#example").handsontable({
-				    data: data.data,
-					rowHeaders:true,
-				    colHeaders:true,
-				    startRows: 10,
-			        startCols: 6,
-			        //右键菜单展示
-			        contextMenu:true,
-			        //自适应列大小
-			        autoColumnSize:true
-			  }) 	
+            da = data.data;
 		}
-	});
+	  });
+setTimeout(function () {
+    console.log(da)
+    var backRenderer = function (instance, td, row, col, prop, value, cellProperties) {
+        Handsontable.renderers.TextRenderer.apply(this, arguments);
+        //控制TD的背景颜色
+        td.style.backgroundColor = '#E6E6FA ';
+        //修改指定属性字体颜色
+        if (prop == 'name') {
+            td.style.color = '#DC143C';
+            //如果要添加其他样式，可以用以下写法
+            //td.style = 'font-weight: bold;';
+        }
+        if (prop == 'age'){
+
+        }
+        if (prop == 'del') {
+            //添加自定义的图片，并给图片的chick添加事件
+            var escaped = Handsontable.helper.stringify(value),imgdel;
+
+            imgdel = document.createElement('IMG');
+            imgdel.src = "dist/pic/del.jpg";
+            imgdel.width = 20;
+            imgdel.name = escaped;
+            imgdel.style = 'cursor:pointer;';//鼠标移上去变手型
+            Handsontable.dom.addEvent(imgdel, 'click', function (event) {
+                hot.alter("remove_row", row);//删除当前行
+            });
+
+            Handsontable.dom.empty(td);
+            td.appendChild(imgdel);
+            td.style.textAlign = 'center';//图片居中对齐
+            return td;
+        }
+    };
+    var container = document.getElementById('example')
+    Handsontable.renderers.registerRenderer('backRenderer', backRenderer);
+    var hot = new Handsontable(container, {
+        data: da,
+        rowHeaders:true,
+        colHeaders:true,
+        filters: true,
+        columnSorting: true,
+        sortIndicator: true,
+        autoColumnSize: true,
+        manualColumnResize: true,
+        undo: true,
+        redo: true,
+        wordWrap: true,
+        copyable: true,
+        mergeCells: false,
+        manualRowResize: true,
+        manualRowMove: true,
+        manualColumnMove: false,
+        renderAllRows: true,
+        allowInsertRow: true,
+        allowInsertColumn: false,
+        fixedColumnsLeft: 1,
+//        columns: [ {
+//            data: 'del',
+//            type: 'text'
+//        }, {
+//            data: 'riqi',
+//            type: 'date',
+//            dateFormat: 'YYYY-MM-DD'
+//        },{
+//            data: 'address',
+//            type: 'text'
+//        },{
+//            data: 'goods',
+//            type: 'text'
+//        },{
+//            data: 'price',
+//            type: 'numeric'
+//        },{
+//            data: 'sales',
+//            type: 'numeric'
+//        }],
+        dropdownMenu: ['filter_by_condition', 'filter_by_value', 'filter_action_bar'],
+        //右键菜单展示
+        contextMenu:['row_above', 'row_below', '---------', 'remove_row','---------','undo','redo','---------','make_read_only','---------','alignment'],
+        cells: function (row, col, prop) {
+            var cellProperties = {};
+            cellProperties.renderer = "backRenderer";
+            return cellProperties;
+        }
+    })
+},'10')
 
 
-	
+
 </script>  
 <!-- 引入 -->
 <script type="text/javascript">window.jQuery || document.write("<script src='static/js/jquery-1.9.1.min.js'>\x3C/script>");</script>

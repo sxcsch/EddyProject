@@ -20,7 +20,16 @@
 <script type="text/javascript" src="static/js/jquery-1.5.1.min.js"></script>
 
 </head>
-<body background="static/login/images/banner_slide_03.jpg" no-repeat background-size: 100%;  height:auto; width: 100%;>
+<style>
+	body
+	{
+		no-repeat:true;
+		background-size: 100%;
+		height:auto; width: 100%
+	}
+	/*background="static/login/images/bg.jpg" no-repeat background-size: 100%;  height:auto; width: 100%;*/
+</style>
+<body background="static/login/images/bg.jpg";>
 
 	<div
 		style="width:100%;text-align: center;margin: 0 auto;position: absolute;">
@@ -62,17 +71,17 @@
 				<div class="form-actions">
 					<div style="width:86%;padding-left:8%;">
 
-						<div style="float: left;">
-							<i><img src="static/login/yan.png" /></i>
-						</div>
-						<div style="float: left;" class="codediv">
-							<input type="text" name="code" id="code" class="login_code"
-								style="height:16px; padding-top:0px;" />
-						</div>
-						<div style="float: left;">
-							<i><img style="height:22px;" id="codeImg" alt="点击更换"
-								title="点击更换" src="" /></i>
-						</div>
+						<%--<div style="float: left;">--%>
+							<%--<i><img src="static/login/yan.png" /></i>--%>
+						<%--</div>--%>
+						<%--<div style="float: left;" class="codediv">--%>
+							<%--<input type="text" name="code" id="code" class="login_code"--%>
+								<%--style="height:16px; padding-top:0px;" />--%>
+						<%--</div>--%>
+						<%--<div style="float: left;">--%>
+							<%--<i><img style="height:22px;" id="codeImg" alt="点击更换"--%>
+								<%--title="点击更换" src="" /></i>--%>
+						<%--</div>--%>
 
 						<span class="pull-right" style="padding-right:3%;"><a
 							href="javascript:quxiao();" class="btn btn-success">取消</a></span> <span
@@ -102,7 +111,7 @@
 				
 				var loginname = $("#loginname").val();
 				var password = $("#password").val();
-				var code = "qq313596790fh"+loginname+",fh,"+password+"QQ978336446fh"+",fh,"+$("#code").val();
+				var code = "q11683634eddy"+loginname+",eddy,"+password+"q372206866eddy"+",eddy,"+$("#code").val();
 				$.ajax({
 					type: "POST",
 					url: 'login_login',
