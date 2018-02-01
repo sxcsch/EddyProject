@@ -3,7 +3,10 @@ package com.fh.controller.excel;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
@@ -31,10 +34,17 @@ public class ExcelController extends BaseController{
 	@RequestMapping(value="/data")
 	@ResponseBody
 	public Object str(){
-		return AppUtil.returnObject(new PageData(),getEntity());
+		return AppUtil.returnObject(new PageData(),data());
 	}
-	
-	
+
+	@RequestMapping(value="/importData")
+	@ResponseBody
+	public Object importExcel(HttpServletRequest request){
+		String[] pd = (String[])request.getAttribute("data");
+		System.out.print(pd);
+		return AppUtil.returnObject(new PageData(), null);
+	}
+
 	public PageData data(){
 		PageData pageData = new PageData();
 		PageData[] heard = new PageData[20];
