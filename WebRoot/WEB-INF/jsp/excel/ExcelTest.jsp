@@ -31,7 +31,8 @@ var da
 		//beforeSend: validateData,
 		cache: false,
 		success: function(data){
-            da = data.data;
+		    console.log(data)
+            da = data;
 		}
 	  });
 var hot
@@ -44,11 +45,6 @@ setTimeout(function () {
         td.style.backgroundColor = '#E6E6FA ';
         //修改指定属性字体颜色
         if (prop == 'name') {
-
-
-//            console.log(cellProperties)
-//            console.log(col)
-//            console.log(row)
             if(value.indexOf("张三") != -1){
                 td.style.color = '#DC143C';
                 //console.log(td)
@@ -132,7 +128,7 @@ setTimeout(function () {
             return cellProperties;
         }
     })
-},'1000s')
+},'1000')
 
 $(top.hangge());
 function clickStr(){

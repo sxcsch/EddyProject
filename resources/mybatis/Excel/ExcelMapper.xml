@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ExcelMapper">
+	
+	
+	<!-- 新增-->
+	<insert id="save" parameterType="pd">
+		insert into excel(
+			name,
+			age,
+			des,
+			status_car,
+			status_home,
+			money,
+			status_bachelordom,
+			id
+		) values (
+			#{name},
+			#{age},
+			#{des},
+			#{status_car},
+			#{status_home},
+			#{money},
+			#{status_bachelordom},
+			NULL
+		)
+	</insert>
+	
+	
+	<!-- 删除-->
+	<delete id="delete" parameterType="pd">
+		delete from excel
+		where 
+			id = #{id}
+	</delete>
+	
+	
+	<!-- 修改 -->
+	<update id="edit" parameterType="pd">
+		update  TB_PICTURES
+			set
+				name = #{name},
+				age = #{age},
+				<if test="des != null and des != ''">
+					des = #{des},
+				</if>
+				status_car = #{status_car},
+				status_home = #{status_home},
+				money = #{money},
+				status_bachelordom = #{status_bachelordom}
+			where
+				id = #{id}
+	</update>
+	
+	
+	<!-- 通过ID获取数据 -->
+	<select id="findById" parameterType="pd" resultType="pd">
+		select
+			name,
+			age,
+			des,
+			status_car,
+			status_home,
+			money,
+			status_bachelordom,
+			id
+		from
+			excel
+		where 
+			id = #{id}
+	</select>
+	
+	
+	<!-- 列表 -->
+	<select id="datalistPage" parameterType="page" resultType="pd">
+		select
+			name,
+			age,
+			des,
+			status_car,
+			status_home,
+			money,
+			status_bachelordom,
+			id
+		from 
+			excel
+		where 1 = 1
+		<if test="pd.KEYW != null and pd.KEYW != ''"><!-- 关键词检索 -->
+			and
+				(
+					 name LIKE CONCAT(CONCAT('%', #{pd.name}),'%')
+					 or 
+					 des LIKE CONCAT(CONCAT('%', #{pd.KEYW}),'%')
+					 or
+					 money LIKE CONCAT(CONCAT('%', #{pd.KEYW}),'%')
+				)
+		</if>
+	</select>
+	
+	<!-- 列表(全部) -->
+	<select id="listAll" parameterType="pd" resultType="pd">
+		select
+			name,
+			age,
+			des,
+			status_car,
+			status_home,
+			money,
+			status_bachelordom,
+			id
+		from 
+			excel
+	</select>
+	
+
+</mapper>
