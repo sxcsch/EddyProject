@@ -132,13 +132,19 @@ setTimeout(function () {
             return cellProperties;
         }
     })
-},'500s')
+},'1000s')
 
 $(top.hangge());
 function clickStr(){
     var url='<%=basePath%>excel/importData.do';
-    var arr;
-    arr.length = hot.getData().length;
+    console.log(hot.getData())
+
+//    var arr
+//    hot.getData().forEach(function(v,k){
+//        arr[k] = JSON.stringify(v);
+//       //alert(k);
+//    });
+console.log(arr)
 //    for (var i=0;i<dat.length;i++){
 //        arr[i]=JSON.stringify(dat[i]);
 //    }

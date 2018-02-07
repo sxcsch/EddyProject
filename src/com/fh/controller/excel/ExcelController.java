@@ -1,29 +1,39 @@
 package com.fh.controller.excel;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.fh.controller.base.BaseController;
+import com.fh.entity.TestData;
+import com.fh.entity.UploadedExcel;
+import com.fh.util.AppUtil;
+import com.fh.util.PageData;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.alibaba.druid.support.json.JSONUtils;
-import com.fh.controller.base.BaseController;
-import com.fh.entity.TestData;
-import com.fh.util.AppUtil;
-import com.fh.util.PageData;
-import com.mysql.fabric.xmlrpc.base.Array;
+import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 
 @Controller
 @RequestMapping("/excel")
 public class ExcelController extends BaseController{
+
+	private UploadedExcel files = null;
+
+//	@RequestMapping(value="/listener")
+//	@ResponseBody
+//	public Object listener(MultipartFile event) throws Exception {
+//		UploadedExcel file = new UploadedExcel();
+//		file.setLength(event.getSize());
+//		file.setName(event.getName());
+//		file.setData(event.getBytes());
+//		file.setStream(event.getInputStream());
+//		files=file;
+//		PageData pd = new PageData();
+//		pd.put("msg","上传成功,点击导入按钮,导入数据.!");
+//		return AppUtil.returnObject(new PageData(),pd );
+//	}
+
+
 	@RequestMapping("/test")
 	public ModelAndView excelTest(ModelAndView mv){
 		mv.setViewName("excel/ExcelTest");
@@ -185,14 +195,14 @@ public class ExcelController extends BaseController{
 			}
 			heard[i]=pd;
 		}
-		
-		
+
+
 		pageData.put("data",heard);
-		
+
 		return pageData;
-		
+
 	}
-	
+
 	public PageData getEntity(){
 		PageData pageData = new PageData();
 		ArrayList<TestData> arrayList = new ArrayList<TestData>();
@@ -226,7 +236,7 @@ public class ExcelController extends BaseController{
 			arrayList.add(testData);
 		}
 		pageData.put("data",arrayList);
-		
+
 		return pageData;
 	}
 }
