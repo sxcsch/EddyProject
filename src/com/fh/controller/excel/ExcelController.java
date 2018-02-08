@@ -1,5 +1,6 @@
 package com.fh.controller.excel;
 
+import com.alibaba.druid.support.json.JSONUtils;
 import com.fh.controller.base.BaseController;
 import com.fh.entity.Page;
 import com.fh.service.excel.ExcelService;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -21,28 +23,50 @@ public class ExcelController extends BaseController{
 	@Autowired
 	ExcelService excelService;
 
-	@RequestMapping("/test")
-	public ModelAndView excelTest(ModelAndView mv){
-		mv.setViewName("excel/ExcelTest");
-		//mv.addObject("pd", data());
-		return mv;
-	}
-	
-	@RequestMapping(value="/data")
-	@ResponseBody
-	public Object str(){
-		PageData pd= null;
+	@RequestMapping(value = "/test")
+	public ModelAndView excelTest(Page page){
+		ModelAndView mv =this.getModelAndView();
 		try {
-			Page page = new Page();
-			pd = getPageData();
-			page.setPd(pd);
+			PageData ppp = new PageData();
+			ppp.put("operation","操作");
+			ppp.put("id","序号");
+			ppp.put("name","名称");
+			ppp.put("age","年龄");
+			ppp.put("des","描述");
+			ppp.put("status_car","是否有车");
+			ppp.put("status_home","是否有房");
+			ppp.put("status_bachelordom","是否单身");
+			ppp.put("money","存款");
+			List<PageData> p = new ArrayList<PageData>();
+			p.add(ppp);
+			page.setPd(this.getPageData());
 			List<PageData> pds= excelService.list(page);
-			return pds;
+			p.addAll(pds);
+			mv.setViewName("excel/ExcelTest");
+			mv.addObject("pds", JSONUtils.toJSONString(p));
+			mv.addObject("pd", this.getPageData());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return pd;
+
+		return mv;
 	}
+	
+//	@RequestMapping(value="/data")
+//	@ResponseBody
+//	public Object str(){
+//		PageData pd= null;
+//		try {
+//			Page page = new Page();
+//			pd = getPageData();
+//			page.setPd(pd);
+//			List<PageData> pds= excelService.list(page);
+//			return pds;
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		return pd;
+//	}
 
 	@RequestMapping(value="/importData")
 	@ResponseBody

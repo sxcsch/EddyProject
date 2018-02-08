@@ -85,15 +85,8 @@
 		from 
 			excel
 		where 1 = 1
-		<if test="pd.KEYW != null and pd.KEYW != ''"><!-- 关键词检索 -->
-			and
-				(
-					 name LIKE CONCAT(CONCAT('%', #{pd.name}),'%')
-					 or 
-					 des LIKE CONCAT(CONCAT('%', #{pd.KEYW}),'%')
-					 or
-					 money LIKE CONCAT(CONCAT('%', #{pd.KEYW}),'%')
-				)
+		<if test="pd.name != null and pd.name != ''"><!-- 关键词检索 -->
+			and name LIKE CONCAT(CONCAT('%', #{pd.name}),'%')
 		</if>
 	</select>
 	
