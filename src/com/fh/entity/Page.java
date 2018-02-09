@@ -88,9 +88,11 @@ public class Page {
 			}
 			if(currentPage==totalPage){
 				sb.append("	<li><a>下页</a></li>\n");
+				sb.append("	<li style=\"cursor:pointer;\"><a onclick=\"nextPage("+(currentPage)+")\">刷新</a></li>\n");
 				sb.append("	<li><a>尾页</a></li>\n");
 			}else{
 				sb.append("	<li style=\"cursor:pointer;\"><a onclick=\"nextPage("+(currentPage+1)+")\">下页</a></li>\n");
+				sb.append("	<li style=\"cursor:pointer;\"><a onclick=\"nextPage("+(currentPage)+")\">刷新</a></li>\n");
 				sb.append("	<li style=\"cursor:pointer;\"><a onclick=\"nextPage("+totalPage+")\">尾页</a></li>\n");
 			}
 			sb.append("	<li><a>第"+currentPage+"页</a></li>\n");

@@ -37,7 +37,7 @@
 	
 	<!-- 修改 -->
 	<update id="edit" parameterType="pd">
-		update  TB_PICTURES
+		update  excel
 			set
 				name = #{name},
 				age = #{age},
