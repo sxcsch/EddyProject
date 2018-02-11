@@ -10,16 +10,19 @@ var backRenderer = function (instance, td, row, col, prop, value, cellProperties
     td.style.backgroundColor = '#E6E6FA ';
     //修改指定属性字体颜色
     if (prop == 'name') {
-           // if(value.indexOf("原一准") != -1){q
-           //     td.style.color = '#DC143C';
-           //     //console.log(td)
-           // }
-//            console.log(instance)
-        //如果要添加其他样式，可以用以下写法
-        //td.style = 'font-weight: bold;';
+        value = value+'';
+            if(value.indexOf("原一准") != -1){
+                td.style.color = '#DC143C';
+            }
     }
     if (prop == 'age'){
 //            td.style.color = '#DC143C';
+            console.log(value)
+            value = value+'';
+            if(value.indexOf("23") != -1){
+                td.style.color = '#DC143C';
+                //console.log(td)
+            }
     }
     if(prop == 'status_car'){
         if(value==0){
@@ -43,7 +46,15 @@ var backRenderer = function (instance, td, row, col, prop, value, cellProperties
         }
     }
     if (prop == 'operation') {
-        if(row!=0){
+        if(value=='已保存'){
+            var escaped = Handsontable.helper.stringify(value),a;
+            a = document.createElement('span');
+            a.className = "label label-info arrowed";
+            a.style = 'cursor:pointer;';//鼠标移上去变手型
+            a.innerText="已保存";
+            td.appendChild(a);
+            cellProperties.readOnly = true;
+        }else if(row!=0){
 //            Handsontable.dom.empty(td);
 //            imgdel = document.createElement('IMG');
 //            imgdel.src = "dist/pic/del.jpg";
@@ -75,7 +86,8 @@ var backRenderer = function (instance, td, row, col, prop, value, cellProperties
                 $.post('excel/saveData.do',ccc,function(data){
                     if(data.success=='ok'){
                         alert("保存成功！");
-                        search();
+                        a.innerText="已保存";
+                        nextPage(currentPage);
                     }else{
                         return;
                     }
