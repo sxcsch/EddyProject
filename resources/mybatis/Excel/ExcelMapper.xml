@@ -13,6 +13,7 @@
 			status_home,
 			money,
 			status_bachelordom,
+			status_operation,
 			id
 		) values (
 			#{name},
@@ -22,6 +23,7 @@
 			#{status_home},
 			#{money},
 			#{status_bachelordom},
+			#{status_operation},
 			NULL
 		)
 	</insert>
@@ -47,6 +49,7 @@
 				status_car = #{status_car},
 				status_home = #{status_home},
 				money = #{money},
+				status_operation = #{status_operation},
 				status_bachelordom = #{status_bachelordom}
 			where
 				id = #{id}
@@ -63,6 +66,7 @@
 			status_home,
 			money,
 			status_bachelordom,
+			status_operation,
 			id
 		from
 			excel
@@ -81,6 +85,7 @@
 			status_home,
 			money,
 			status_bachelordom,
+			status_operation,
 			id
 		from 
 			excel
@@ -100,6 +105,7 @@
 			status_home,
 			money,
 			status_bachelordom,
+			status_operation,
 			id
 		from 
 			excel

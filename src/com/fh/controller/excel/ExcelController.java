@@ -28,8 +28,8 @@ public class ExcelController extends BaseController{
 		ModelAndView mv =this.getModelAndView();
 		try {
 			PageData ppp = new PageData();
-			ppp.put("operation","操作");
 			ppp.put("id","序号");
+			ppp.put("status_operation","操作");
 			ppp.put("name","名称");
 			ppp.put("age","年龄");
 			ppp.put("des","描述");
