@@ -50,20 +50,6 @@ function search(){
 }
 
 $(top.hangge());
-function clickStr(){
-    $.ajax({
-        type: "post",
-        url: url,
-        data: {"data":arr},
-        dataType:'json',
-        //beforeSend: validateData,
-        cache: false,
-        success: function(data){
-            //console.log(data);
-        }
-    });
-
-}
 
 </script>
 <!-- 引入 -->

@@ -65,7 +65,7 @@ $(function(){
 		}
 	});
 });
-/**
+
 //在线管理
 var websocket;
 function online(){
@@ -124,7 +124,7 @@ function goOutUser(theuser){
 	websocket.send('[goOut]'+theuser);
 }
 
-*/
+
 
 
 //换肤
@@ -237,7 +237,7 @@ function menu(){
 
 //切换菜单
 function changeMenu(){
-	websocket.send('[changeMenu]'+user);
+    window.location.href=locat+'/main/yes';
 }
 
 //清除加载进度

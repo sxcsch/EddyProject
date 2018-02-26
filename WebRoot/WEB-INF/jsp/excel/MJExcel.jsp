@@ -21,39 +21,17 @@
 </head>  
 <body>
 <div class="container-fluid" id="main-container">
-    <form id="Form" action="excel/test.do" method="post" name="Form" id="Form">
-    <table>
-        <tr>
-            <td>
-                <span class="input-icon">
-                    <input autocomplete="off" id="nav-search-input" type="text" name="name" value="${pd.name}" placeholder="这里输入姓名" />
-                    <i id="nav-search-icon" class="icon-search"></i>
-                </span>
-            </td>
-            <td style="vertical-align:top;"><button class="btn btn-mini btn-light" onclick="search();"  title="检索"><i id="nav-search-icon" class="icon-search"></i></button></td>
-        </tr>
-    </table>
-    <!-- 检索  -->
 
     <div class="row-fluid" id="example"></div>
-    <div class="pagination" style="float: left;padding-top: 0px;margin-top: 10px;">${page.pageStr}</div>
 
     </form>
 </div>
 <script>
 var da = ${pds};
-
-//检索
-function search(){
-    top.jzts();
-    $("#Form").submit();
-}
-
-$(top.hangge());
-
+console.log(da)
 </script>
 <!-- 引入 -->
-<script src="static/js/excel.js"></script>
+<script src="static/js/myjs/excelMJ.js"></script>
 <!-- 引入 -->
 <script type="text/javascript">window.jQuery || document.write("<script src='static/js/jquery-1.9.1.min.js'>\x3C/script>");</script>
 <script src="static/js/bootstrap.min.js"></script>
