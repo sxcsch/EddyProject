@@ -69,6 +69,24 @@ public class ExcelController extends BaseController{
 		}
 		return AppUtil.returnObject(new PageData(), ppp);
 	}
+	@RequestMapping(value="/saveDataone")
+	@ResponseBody
+	public Object saveDataone(){
+		PageData pd = this.getPageData();
+		PageData ppp = new PageData();
+		try {
+			if ("null".equals(pd.get("id"))){
+				excelService.save(pd);
+			}else {
+				excelService.edit(pd);
+			}
+			ppp.put("success","ok");
+		} catch (Exception e) {
+			e.printStackTrace();
+			ppp.put("success","error");
+		}
+		return AppUtil.returnObject(new PageData(), ppp);
+	}
 //	@RequestMapping(value="/data")
 //	@ResponseBody
 //	public Object str(){

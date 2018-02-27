@@ -90,14 +90,112 @@ var hot;
 //             });
 //         }
 //     }
-// }
+// }.
+function ajaxCheck() {
+    var storage = window.localStorage;
+    if (storage!=null){
+        for (var i=0, len = storage.length; i < len; i++)
+        {
+            var key = storage.key(i);
+            var value = storage.getItem(key);
+            // console.log(key + "=" + value);
+            var ccc = JSON.parse(value);
+            $.ajax({
+                url:"excel/data",    //请求的url地址
+                dataType:"json",   //返回格式为json
+                async:true,//请求是否异步，默认为异步，这也是ajax重要特性
+                data:ccc,    //参数值
+                type:"post",   //请求方式
+                success:function(req){
+                    //请求成功时处理
+                    localStorage.removeItem("site");
+                },
+                error:function(){
+                    //请求出错处理
+                }
+            });
+        }
+    }
+}
+// ref = setInterval(function(){
+//     ajaxCheck();
+// },2000);
 
+window.onbeforeunload = function (event) {
+    //show_confirm();// 执行自己的函数
+
+    // console.log(event);
+    // if (typeof event == 'undefined') {
+    //     event = window.event;
+    // }
+    // if (event) {
+    //     event.returnValue = message;
+    // }
+    localStorage.setItem("site", "js8.in");
+    console.log(localStorage)
+    //ajaxCheck();
+    return "";
+}
+
+var hang= -1;
+var lie = -1;
+var ddd = '';
 //自定义列
 var backRenderer = function (instance, td, row, col, prop, value, cellProperties) {
+    var $events = $(td).data("events");
+    if( $events && $events["dblclick"] ){
+        //your code here
+    }else{
+        $(td).dblclick(function () {
+            hang = row;
+            lie  = col;
+            ddd=value;
+            console.log(td)
+        })
+    }
+    if(row==hang && lie ==col && ddd!=value){
+        console.log(value);
+        var rows=hot.getDataAtRow(row);
+        var datah='{';
+        for(var i=0;i<rows.length;i++){
+            var dapaaa = hot.colToProp(i);
+            if(i==rows.length-1){
+                datah+='"'+dapaaa+'"'+':'+'"'+rows[i]+'"';
+            }else{
+                datah+='"'+dapaaa+'"'+':'+'"'+rows[i]+'"'+',';
+            }
+        }
+        datah+='}';
+        var ccc = JSON.parse(datah);
+        console.log(ccc)
+        $.ajax({
+            url:"http://www.microsoft.com",    //请求的url地址
+            dataType:"json",   //返回格式为json
+            async:true,//请求是否异步，默认为异步，这也是ajax重要特性
+            data:ccc,    //参数值
+            type:"post",   //请求方式
+            success:function(req){
+                //请求成功时处理
+
+                var value = sessionStorage.getItem("key");
+                var site = localStorage.getItem("site");
+                sessionStorage.removeItem("key");
+                localStorage.removeItem("site");
+            },
+            error:function(){
+                //请求出错处理
+                sessionStorage.setItem("key", "value");
+                localStorage.setItem("site", "js8.in");
+            }
+        });
+
+        hang = -1;
+        lie = -1;
+    }
 
     Handsontable.renderers.TextRenderer.apply(this, arguments);
     //控制TD的背景颜色
-    td.style.backgroundColor = '#E6E6FA ';
+    //td.style.backgroundColor = '#E6E6FA ';
     //修改指定属性字体颜色
     if (prop == 'name') {
         value = value+'';
@@ -236,3 +334,37 @@ hot = new Handsontable(container, {
         return cellProperties;
     }
 })
+
+
+
+// window.onload=function(){
+//     var tbody=document.getElementsByTagName("tbody")[1];
+//     console.log(tbody);
+//     tbody.ondblclick=function (e) {
+//         var ev=e||window.event;
+//         var target=ev.target||ev.srcElement;
+//         if(target.nodeName=="TD"){
+//             var oldv=target.innerHTML;
+//             target.innerHTML="";
+//             var input=document.createElement("input");
+//             input.type="text";
+//             input.value=oldv;
+//             target.appendChild(input);
+//             input.focus();
+//             input.onblur=function () {
+//                 var newv=this.value;
+//                 target.removeChild(input);
+//                 target.innerHTML=newv;
+//                 if(newv!=oldv){
+//                     var id=target.parentNode.getAttribute("attr");
+//                     var attr=target.getAttribute("attr");
+//
+//                     alert(111111112);
+//                 }else{
+//                     alert(111)
+//                 }
+//             }
+//         }
+//     }
+// }
+
